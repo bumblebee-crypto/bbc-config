@@ -19,6 +19,9 @@
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+
+  --vt-c-toxic-green: hsla(160, 100%, 37%, 1);
+  --vt-c-dim-toxic-green: rgb(0, 149, 99);
 }
 
 /* semantic color variables for this project */
@@ -34,6 +37,8 @@
   --color-text: var(--vt-c-text-light-1);
 
   --section-gap: 160px;
+
+  --accent-color: var(--vt-c-toxic-green);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -50,13 +55,10 @@
   }
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+* {
   margin: 0;
-  position: relative;
-  font-weight: normal;
+  padding: 0;
+  outline: none;
 }
 
 body {
@@ -71,4 +73,11 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: var(--accent-color);
+  transition: 0.4s;
 }
