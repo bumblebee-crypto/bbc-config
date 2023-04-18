@@ -36,7 +36,9 @@ jobs:
         with:
           node-version: 19.x
       - name: Build Vue.js App
-        run: npm run build
+        run: |
+          npm install
+          npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
