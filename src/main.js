@@ -1,12 +1,6 @@
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-
 import App from './App.vue'
-import router from './router'
+import { VueClipboard } from '@soerenmartius/vue3-clipboard'
+import '@/assets/base.css'
 
-import './assets/base.css'
-
-const app = createApp(App)
-app.use(createPinia())
-app.use(router)
-app.mount('#app')
+createApp(App).use(VueClipboard).mount('#app')
