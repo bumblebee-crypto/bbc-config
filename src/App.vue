@@ -1,9 +1,12 @@
 <script>
+import SvgIcon from '@jamescoyle/vue-icon'
+import { mdiContentCopy } from '@mdi/js'
 import { toClipboard } from '@soerenmartius/vue3-clipboard'
 import intervals from '@/binance/intervals'
 import symbols from '@/binance/symbols'
 
 export default {
+  components: { SvgIcon },
   data() {
     return {
       intervals,
@@ -15,7 +18,8 @@ export default {
         lot_size_usdt: 100.0,
         profit_margin: 0.01,
         number_open_orders: 10
-      }
+      },
+      copyIcon: mdiContentCopy
     }
   },
   methods: {
@@ -23,7 +27,7 @@ export default {
       if (this.config.symbols.has(symbol)) this.config.symbols.delete(symbol)
       else this.config.symbols.add(symbol)
     },
-    async configJSON() {
+    async copyConfigJSON(e) {
       const config = {}
       Object.assign(config, this.config)
       config.symbols = Array.from(config.symbols)
@@ -66,11 +70,12 @@ export default {
     </div>
   </form>
 
-  <button @click="(e) => configJSON()">GET CONFIG MESSAGE</button>
+  <button @click="copyConfigJSON"><svg-icon type="mdi" :path="copyIcon"></svg-icon></button>
 </template>
 
 <style scoped>
 form {
+  margin-top: 16px;
   display: flex;
   flex-direction: column;
   padding: 0 10px;
@@ -78,7 +83,7 @@ form {
 
 h2,
 label {
-  margin: 16px 0 4px 0;
+  margin-bottom: 4px;
 }
 
 select,
@@ -96,22 +101,25 @@ input:focus {
 }
 
 input[type='checkbox'] {
-  margin: 16px 8px 0 0;
+  margin: 12px 8px 0 0;
   width: 20px;
   height: 20px;
 }
 
 button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
   display: block;
-  width: 80%;
-  margin: 16px auto;
-  padding: 8px;
-  border-radius: 8px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
   font-size: 18px;
   font-weight: 600;
   color: white;
   background-color: var(--accent-color);
-  border: 3px solid transparent;
   cursor: pointer;
+  border: none;
+  text-align: center;
 }
 </style>
